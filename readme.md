@@ -1,5 +1,4 @@
 ---
-
 # 📊 **Exploratory Data Analysis (EDA) on e-Commerce Transaction Data** 🌐
 
 ## 🎯 **Project Overview**
@@ -88,11 +87,5 @@ All visualizations are interactive, allowing users to zoom, hover, and explore d
 - ⏰ **Purchase Hour Analysis**: Visuals to identify the hours of the day with the highest transactions.
 
 ## 🌟 **Conclusion**
-This EDA project provides actionable insights that can help the online retail company understand customer behavior better. By analyzing purchasing patterns, peak times, and the countries with the highest sales, the company can make data-driven decisions for future marketing strategies and inventory management. 
-
----
-
-🔗 **Let’s Connect**: Feel free to explore the project and get in touch if you have any questions!  
-**Happy Analyzing!** 🎉
-
+This EDA project provides actionable insights that can help the online retail company understand customer behavior better. By analyzing purchasing patterns, peak times, and the countries with the highest sales, the company can make data-driven decisions for future marketing strategies and inventory management.
 ---
