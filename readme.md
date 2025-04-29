@@ -1,72 +1,120 @@
+# 🛒 E-Commerce Retail Dataset Analysis
+
+## 📋 Table of Contents
+1. [About the Project](#about-the-project)
+2. [Dataset Description](#dataset-description)
+3. [Tech Stack](#tech-stack)
+4. [Data Preprocessing](#data-preprocessing)
+5. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+6. [Visualizations](#visualizations)
+7. [Key Insights](#key-insights)
+8. [Conclusion](#conclusion)
+
 ---
-title: "Exploratory Data Analysis (EDA) on e-Commerce Transaction Data"
-project_overview: |
-  This project involves conducting **Exploratory Data Analysis (EDA)** on a transactional dataset from a UK-based online retail company. 
-  The dataset contains valuable insights into customer purchasing behavior, including information such as product details, sales, countries, and customer activities. 
-  Our aim is to uncover important trends, patterns, and statistics through analysis and visualization.
 
-  Dataset Size: The dataset is **500,000 rows** long, containing extensive transactional data over a one-year period. 
-  This large dataset allows for comprehensive analysis of customer behavior and purchasing trends.
+## 📌 About the Project
+This project involves analyzing an e-commerce retail dataset to extract business insights and prepare for further applications like customer segmentation, product recommendations, and sales forecasting.
 
-what_is_EDA: |
-  EDA stands for **Exploratory Data Analysis**. It is a crucial process in data analysis that involves:
-    - Understanding the data through statistical summary and visualization.
-    - Identifying patterns in the dataset, including trends, correlations, and anomalies.
-    - Summarizing the dataset using graphical tools like histograms, box plots, and scatter plots.
-    
-  By using EDA, we gain insights that help drive business decisions, reveal hidden patterns, and guide further analysis.
+The dataset contains over 540,000 transaction records from an online retailer based in the UK, selling gift-related items from 2010 to 2011.
 
-dataset_overview:
-  InvoiceNo: "Invoice Number 💳"
-  StockCode: "Product Code 🏷️"
-  Description: "Product Name 🛍️"
-  Quantity: "Quantity Purchased 🔢"
-  InvoiceDate: "Transaction Date 📅"
-  UnitPrice: "Price per Unit 💰"
-  CustomerID: "Customer ID 👤"
-  Country: "Customer Country 🌍"
-
-key_insights:
-  - title: "Top Countries by Number of Orders 🇬🇧🌎"
-    description: "Discover which countries place the highest number of orders."
-  - title: "Top Countries by Total Spending 💸"
-    description: "Identify the countries where the most money was spent on purchases."
-  - title: "Monthly Sales Trends 📅💵"
-    description: "Analyze which months had the highest and lowest sales."
-  - title: "Peak Purchase Hours 🕒"
-    description: "Investigate the hours of the day when the most transactions occurred."
-  - title: "Sales Trends Over Time 📈"
-    description: "Discover periods of sales growth and decline, including sales increase and decrease days."
-  - title: "Unusual Gaps in Transactions ❌"
-    description: "Identify dates where there were no transactions."
-
-tools_and_techniques_used:
-  - Python 🐍
-  - Pandas 🧑‍💻
-  - Matplotlib & Seaborn 📊
-  - Jupyter Notebooks 💻
-
-how_the_analysis_was_conducted:
-  - step: "Data Cleaning 🧹"
-    description: "Handling missing values, incorrect data types, and removing duplicates."
-  - step: "Data Exploration 🔍"
-    description: "Descriptive statistics and data grouping to find key metrics like total sales per country."
-  - step: "Visualization 📊"
-    description: "Plotting graphs and charts for orders by country, total spending by country, monthly trends, and hourly purchase patterns."
-  - step: "Pattern Recognition 📈"
-    description: "Identifying trends like peak purchasing times, high-sales months, and sales increase days."
-
-project_files:
-  - Data Files 📁: "Contains the transactional data (500,000 rows)"
-  - Analysis Notebook 📓: "The Jupyter notebook where the analysis and visualizations are documented."
-  - Visualizations 📸: "Charts and graphs showcasing the findings."
-
-interactive_insights_and_visualizations:
-  - "Top Countries: Hover over each country to see the number of orders and spending details."
-  - "Monthly Trends: Interactive time-series plots that help you track changes in sales over time."
-  - "Purchase Hour Analysis: Visuals to identify the hours of the day with the highest transactions."
-
-conclusion: |
-  This EDA project provides actionable insights that can help the online retail company understand customer behavior better. 
-  By analyzing purchasing patterns, peak times, and the countries with the highest sales, the company can make data-driven decisions for future marketing strategies and inventory management.
 ---
+
+## 📦 Dataset Description
+The dataset `data.csv` includes the following columns:
+
+| Column Name  | Description                                                       |
+|--------------|-------------------------------------------------------------------|
+| InvoiceNo    | Unique invoice number. 'C' prefix indicates a cancellation.      |
+| StockCode    | Product/item code                                                 |
+| Description  | Item name                                                         |
+| Quantity     | Number of items purchased                                         |
+| InvoiceDate  | Date and time of the transaction                                  |
+| UnitPrice    | Price per item                                                    |
+| CustomerID   | Unique customer ID                                                |
+| Country      | Country of the customer                                           |
+
+**Total rows:** 541,909  
+**Total columns:** 8
+
+---
+
+## 🛠️ Tech Stack
+- Python (Pandas, NumPy, Matplotlib, Seaborn, Plotly)
+- Jupyter Notebook
+- Markdown for documentation
+
+---
+
+## 🧹 Data Preprocessing
+### ✅ Steps Taken:
+- Loaded the dataset with ISO-8859-1 encoding.
+- Checked and summarized data types and missing values:
+  - CustomerID has ~25% missing values.
+  - Description has ~0.26% missing values.
+- Dropped missing rows using `dropna()`.
+- Removed duplicates (found 5,225).
+- Converted `InvoiceDate` to datetime format.
+- Removed canceled transactions (marked by 'C' in `InvoiceNo`).
+- Filtered special StockCodes like POST, D, M, etc.
+- Checked for negative `Quantity` indicating returns/refunds.
+
+---
+
+## 📊 Exploratory Data Analysis (EDA)
+
+1. **Basic Stats**
+   - **Total Products:** 3,684
+   - **Total Transactions:** 22,190
+   - **Total Unique Customers:** 4,372
+   - **Countries involved:** 37
+
+2. **Order Patterns**
+   - Found 16.47% of transactions were canceled.
+   - Detected returns through negative quantity values.
+   - Discovered special StockCodes for discounts, postage, carriage, etc.
+
+3. **Basket Size**
+   - Number of products per invoice varies significantly (1 to over 80 items).
+
+---
+
+## 📈 Visualizations
+
+| Visualization    | Description                                             |
+|------------------|---------------------------------------------------------|
+| 🌍 Choropleth Map | Orders per country                                     |
+| 🔥 Bar Chart      | Top 10 countries by order volume                       |
+| 📦 Histogram      | Distribution of number of products per transaction     |
+| 🥧 Pie Chart      | Canceled vs non-canceled orders                        |
+| 🔁 Count Plot     | Returned vs normal items                               |
+| 🛒 Bar Chart      | Top 10 most sold products                              |
+| 📅 Time Series    | Monthly trend of product sales                         |
+| ☁️ Word Cloud     | Common words in product descriptions                   |
+| 🧯 Heatmap        | Visual representation of missing data                  |
+
+---
+
+## 📌 Key Insights
+- **United Kingdom** had the highest number of transactions (~89%).
+- ~16.5% of total orders were canceled.
+- Some product codes indicate services (e.g., postage, discounts).
+- A few products (e.g., bags, lanterns) dominate sales.
+- Returns are common for certain items and may indicate quality issues or customer dissatisfaction.
+
+---
+
+## 🧾 Conclusion
+This project successfully performed an in-depth exploratory analysis of a retail transaction dataset. We cleaned, transformed, and visualized the data, identifying key patterns such as:
+- Customer behavior across countries
+- Popular products
+- Cancelation and return patterns
+- Seasonal sales trends
+
+These insights can be used for:
+- Inventory planning
+- Targeted marketing
+- Customer segmentation
+- Sales forecasting
+
+---
+
